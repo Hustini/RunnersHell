@@ -1,5 +1,6 @@
 import pygame
 import sys
+from classes import Player
 
 # Initialize Pygame
 pygame.init()
@@ -13,9 +14,16 @@ pygame.display.set_caption('Runner Hell')
 # Define the Background
 BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_width, screen_height))
 
+# Define player and sprite group for animation
+moving_sprites = pygame.sprite.Group()
+player = Player(10, 10)
+moving_sprites.add(player)
+
 
 def draw_window():
     screen.blit(BG, (0, 0))
+    moving_sprites.draw(screen)
+    moving_sprites.update(0.0035)
     pygame.display.flip()
 
 
