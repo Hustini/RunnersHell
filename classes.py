@@ -3,15 +3,10 @@ import pygame
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, x, y):
+    def __init__(self, x, y, animation_dir='./img/player', frames=6):
         super().__init__()
         self.sprites = []
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player1.png'), (42, 57)))
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player2.png'), (42, 57)))
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player3.png'), (42, 57)))
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player4.png'), (42, 57)))
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player5.png'), (42, 57)))
-        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player6.png'), (42, 57)))
+        self.load_images(animation_dir, frames)
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
 
@@ -20,6 +15,11 @@ class Player(pygame.sprite.Sprite):
 
         self.x = x
         self.y = y
+
+    def load_images(self, directory, frames):
+        for i in range(1, frames + 1):
+            path = os.path.join(directory, f'player{i}.png')
+            self.sprites.append(pygame.image.load(path))
 
     def update(self, speed):
         self.current_sprite += speed
