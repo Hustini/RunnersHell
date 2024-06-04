@@ -5,17 +5,17 @@ import sys
 pygame.init()
 
 # Set up the display
-screen_width = 1000
-screen_height = 600
+screen_width = 400
+screen_height = 710
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Red Screen')
+pygame.display.set_caption('Runner Hell')
 
-# Define the red color
-red = (255, 0, 255)
+# Define the Background
+BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_width, screen_height))
 
 
 def draw_window():
-    screen.fill(red)
+    screen.blit(BG, (0, 0))
     pygame.display.flip()
 
 
