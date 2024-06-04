@@ -6,12 +6,12 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.sprites = []
-        self.sprites.append(pygame.image.load('img/player/player1.png'))
-        self.sprites.append(pygame.image.load('img/player/player2.png'))
-        self.sprites.append(pygame.image.load('img/player/player3.png'))
-        self.sprites.append(pygame.image.load('img/player/player4.png'))
-        self.sprites.append(pygame.image.load('img/player/player5.png'))
-        self.sprites.append(pygame.image.load('img/player/player6.png'))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player1.png'), (42, 57)))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player2.png'), (42, 57)))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player3.png'), (42, 57)))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player4.png'), (42, 57)))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player5.png'), (42, 57)))
+        self.sprites.append(pygame.transform.scale(pygame.image.load('img/player/player6.png'), (42, 57)))
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
 
