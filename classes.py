@@ -19,7 +19,9 @@ class Player(pygame.sprite.Sprite):
     def load_images(self, directory, frames):
         for i in range(1, frames + 1):
             path = os.path.join(directory, f'player{i}.png')
-            self.sprites.append(pygame.image.load(path))
+            # loads, flips and rotates the image
+            image = pygame.image.load(path)
+            self.sprites.append(pygame.transform.rotate(pygame.transform.flip(image, True, False), 270))
 
     def update(self, speed):
         self.current_sprite += speed
