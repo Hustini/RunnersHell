@@ -39,6 +39,12 @@ class Pillar(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = [x, y]
 
+    def move(self):
+        self.y += 0.05
+        self.rect.y = self.y
+        if self.y >= 500:
+            self.y = 0
+
 
 if __name__ == '__main__':
     player = Player(10, 10)
