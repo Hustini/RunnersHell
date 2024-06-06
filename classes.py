@@ -35,6 +35,9 @@ class Pillar(pygame.sprite.Sprite):
         super().__init__()
         self.x = x
         self.y = y
+        self.image = pygame.transform.scale(pygame.image.load('./img/pillar.png'), (80, 400))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [x, y]
 
 
 if __name__ == '__main__':
