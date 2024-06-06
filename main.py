@@ -45,6 +45,8 @@ while running:
 
     # draws stuff to the screen
     draw_window()
+    for pillar in pillars:
+        pillar.move()
 
 # Quit Pygame
 pygame.quit()
