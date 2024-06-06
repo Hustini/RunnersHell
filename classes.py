@@ -30,6 +30,13 @@ class Player(pygame.sprite.Sprite):
         self.image = self.sprites[int(self.current_sprite)]
 
 
+class Pillar(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.x = x
+        self.y = y
+
+
 if __name__ == '__main__':
     player = Player(10, 10)
     print(player)
