@@ -22,7 +22,7 @@ moving_sprites.add(player)
 
 # sprite group for the pillar
 pillar_sprite = pygame.sprite.Group()
-pillars = [Pillar(-50, 0), Pillar(-50, 400), Pillar(370, 0), Pillar(370, 400)]
+pillars = [Pillar(-50, 0), Pillar(-50, 400), Pillar(-50, -400), Pillar(370, 0), Pillar(370, 400), Pillar(370, -400)]
 for i in pillars:
     pillar_sprite.add(i)
 
