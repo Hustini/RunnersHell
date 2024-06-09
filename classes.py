@@ -42,8 +42,8 @@ class Pillar(pygame.sprite.Sprite):
     def move(self):
         self.y += 0.05
         self.rect.y = self.y
-        if self.y >= 500:
-            self.y = 0
+        if self.y >= 710:
+            self.y = -400
 
 
 if __name__ == '__main__':
