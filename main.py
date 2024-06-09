@@ -17,7 +17,7 @@ BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_
 
 # Define player and sprite group for animation
 moving_sprites = pygame.sprite.Group()
-player = Player(100, 100)
+player = Player(30, 550)
 moving_sprites.add(player)
 
 # sprite group for the pillar
@@ -42,6 +42,14 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                if not player.get_facing():
+                    player.load_images('./img/player', 6, True)
+                    player.set_facing(True)
+                else:
+                    player.load_images('./img/player', 6, False)
+                    player.set_facing(False)
 
     # draws stuff to the screen
     draw_window()
