@@ -6,7 +6,9 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, animation_dir='./img/player', frames=6):
         super().__init__()
         self.sprites = []
-        self.load_images(animation_dir, frames)
+        # true = right, false = left
+        self.facing = False
+        self.load_images(animation_dir, frames, self.facing)
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
 
@@ -16,18 +18,25 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
 
-    def load_images(self, directory, frames):
+    def load_images(self, directory, frames, direction):
+        self.sprites = []
         for i in range(1, frames + 1):
             path = os.path.join(directory, f'player{i}.png')
             # loads, flips and rotates the image
             image = pygame.image.load(path)
-            self.sprites.append(pygame.transform.rotate(pygame.transform.flip(image, True, False), 270))
+            self.sprites.append(pygame.transform.rotate(pygame.transform.flip(image, True, direction), 270))
 
     def update(self, speed):
         self.current_sprite += speed
         if self.current_sprite >= len(self.sprites):
             self.current_sprite = 0
         self.image = self.sprites[int(self.current_sprite)]
+
+    def get_facing(self):
+        return self.facing
+
+    def set_facing(self, value):
+        self.facing = value
 
 
 class Pillar(pygame.sprite.Sprite):
