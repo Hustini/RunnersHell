@@ -1,7 +1,10 @@
 import pygame
 import sys
+import random
+import time
 from classes import Player
 from classes import Pillar
+from classes import Rocket
 
 # Initialize Pygame
 pygame.init()
@@ -26,12 +29,24 @@ pillars = [Pillar(-50, 0), Pillar(-50, 400), Pillar(-50, -400), Pillar(370, 0), 
 for i in pillars:
     pillar_sprite.add(i)
 
+rockets = []
+start_time = time.time()
+interval = random.uniform(1, 3)
+
+
+def create_rocket():
+    x = random.randint(30, 225)
+    rocket = Rocket(x, 0)
+    rockets.append(rocket)
+
 
 def draw_window():
     screen.blit(BG, (0, 0))
     moving_sprites.draw(screen)
     moving_sprites.update(0.009)
     pillar_sprite.draw(screen)
+    for rocket in rockets:
+        rocket.draw(screen)
     pygame.display.flip()
 
 
@@ -55,6 +70,12 @@ while running:
     draw_window()
     for pillar in pillars:
         pillar.move()
+
+    current_time = time.time()
+    if current_time - start_time >= interval:
+        create_rocket()
+        start_time = current_time
+        interval = random.uniform(1, 3)
 
     # gravity
     player.gravity()
