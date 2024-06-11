@@ -61,9 +61,6 @@ class Rocket(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(pygame.transform.rotate(pygame.image.load(img), 180), 0.1)
         self.rect = self.image.get_rect()
 
-    def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
-
     def move(self):
         self.y += 0.5
         self.rect.y += 0.5
