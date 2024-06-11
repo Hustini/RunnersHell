@@ -56,6 +56,10 @@ while running:
     for pillar in pillars:
         pillar.move()
 
+    # gravity
+    player.gravity()
+    player.update(0.009)
+
 # Quit Pygame
 pygame.quit()
 sys.exit()
