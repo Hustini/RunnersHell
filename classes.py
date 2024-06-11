@@ -38,6 +38,20 @@ class Player(pygame.sprite.Sprite):
     def set_facing(self, value):
         self.facing = value
 
+    def gravity(self):
+        if self.facing:
+            self.x += 1
+            self.rect.x += 1
+            if self.rect.x >= 275:
+                self.x = 275
+                self.rect.x = 275
+        else:
+            self.x -= 1
+            self.rect.x -= 1
+            if self.rect.x <= 30:
+                self.x = 30
+                self.rect.x = 30
+
 
 class Pillar(pygame.sprite.Sprite):
     def __init__(self, x, y):
