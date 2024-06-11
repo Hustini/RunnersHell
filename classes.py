@@ -53,6 +53,24 @@ class Player(pygame.sprite.Sprite):
                 self.rect.x = 30
 
 
+class Rocket(pygame.sprite.Sprite):
+    def __init__(self, x, y, img='./img/rocket.png'):
+        super().__init__()
+        self.x = x
+        self.y = y
+        self.image = pygame.transform.scale_by(pygame.transform.rotate(pygame.image.load(img), 180), 0.1)
+        self.rect = self.image.get_rect()
+
+    def draw(self, screen):
+        screen.blit(self.image, (self.x, self.y))
+
+    def move(self):
+        self.y += 0.5
+        self.rect.y += 0.5
+        if self.rect.y > 400:
+            self.kill()
+
+
 class Pillar(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
