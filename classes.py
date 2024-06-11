@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
             path = os.path.join(directory, f'player{i}.png')
             # loads, flips and rotates the image
             image = pygame.image.load(path)
-            self.sprites.append(pygame.transform.rotate(pygame.transform.flip(image, True, direction), 270))
+            self.sprites.append(pygame.transform.scale_by(pygame.transform.rotate(pygame.transform.flip(image, True, direction), 270), 0.5))
 
     def update(self, speed):
         self.current_sprite += speed
@@ -42,9 +42,9 @@ class Player(pygame.sprite.Sprite):
         if self.facing:
             self.x += 1
             self.rect.x += 1
-            if self.rect.x >= 275:
-                self.x = 275
-                self.rect.x = 275
+            if self.rect.x >= 320:
+                self.x = 320
+                self.rect.x = 320
         else:
             self.x -= 1
             self.rect.x -= 1
