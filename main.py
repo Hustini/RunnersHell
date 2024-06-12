@@ -61,7 +61,7 @@ rocket_sprite = pygame.sprite.Group()
 
 
 def create_rocket():
-    x = random.randint(30, screen_width - 30)
+    x = random.randint(30, screen_width - 50)
     rocket = Rocket(x, 0)
     rocket_sprite.add(rocket)
 
