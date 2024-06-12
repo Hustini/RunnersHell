@@ -73,8 +73,12 @@ interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 def end_screen():
     screen.fill((0, 0, 0))
     game_over_text = font.render('GAME OVER', True, (255, 0, 0))
+    score_text = font.render(f'Score: {player.get_score()}', True, (255, 0, 0))
     screen.blit(game_over_text, (
-        screen_width // 2 - game_over_text.get_width() // 2, screen_height // 2 - game_over_text.get_height() // 2))
+        screen_width // 2 - game_over_text.get_width() // 2,
+        screen_height // 2 - game_over_text.get_height() // 2 - 20))
+    screen.blit(score_text, (
+        screen_width // 2 - score_text.get_width() // 2, screen_height // 2 - score_text.get_height() // 2 + 20))
     pygame.display.flip()
     time.sleep(3)
     pygame.quit()
