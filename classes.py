@@ -75,6 +75,9 @@ class Rocket(pygame.sprite.Sprite):
             self.kill()
 
 
+heart = pygame.transform.scale_by(pygame.image.load('./img/heart.png'), 0.075)
+
+
 class HealthBar:
     def __init__(self, x, y, w, h, max_hp):
         self.x = x
@@ -88,7 +91,7 @@ class HealthBar:
         ratio = self.hp / self.max_hp
         pygame.draw.rect(surface, "red", (self.x, self.y, self.w, self.h))
         pygame.draw.rect(surface, "green", (self.x, self.y, self.w * ratio, self.h))
-        surface.blit(pygame.transform.scale_by(pygame.image.load('./img/heart.png'), 0.075), (100, 10))
+        surface.blit(heart, (100, 10))
 
     def reduce_hp(self):
         self.hp -= 1
