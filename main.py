@@ -5,6 +5,7 @@ import time
 from classes import Player
 from classes import Pillar
 from classes import Rocket
+from classes import HealthBar
 
 # Initialize Pygame
 pygame.init()
@@ -26,6 +27,9 @@ BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_
 moving_sprites = pygame.sprite.Group()
 player = Player(130, 550)
 moving_sprites.add(player)
+
+# Health bar
+health_bar = HealthBar(125, 10, 150, 30, 3)
 
 # sprite group for the pillar
 pillar_sprite = pygame.sprite.Group()
@@ -53,6 +57,7 @@ def draw_window():
     moving_sprites.update(0.009)
     pillar_sprite.draw(screen)
     rocket_sprite.draw(screen)
+    player.health.draw(screen)
     pygame.display.flip()
 
 
