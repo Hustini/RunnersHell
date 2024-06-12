@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.health = HealthBar(135, 20, 150, 30, 3)
+        self.score = 0
 
     def load_images(self, directory, frames, direction):
         self.sprites = []
@@ -38,6 +39,13 @@ class Player(pygame.sprite.Sprite):
 
     def set_facing(self, value):
         self.facing = value
+
+    def increase_score(self, value):
+        if self.health.hp != 0:
+            self.score += value
+
+    def get_score(self):
+        return int(self.score)
 
     def reduce_health(self):
         self.health.reduce_hp()
