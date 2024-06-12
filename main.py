@@ -8,21 +8,24 @@ from classes import Pillar
 from classes import Rocket
 from classes import HealthBar
 
-""""# Json data
-name = str(input('Give me a name'))
-with open('./data.json', 'r') as file:
-    data = json.load(file)
 
-data['player']['name'] = name
+def give_name():  # Json data for the name
+    name = str(input('Give me a name'))
+    with open('./data.json', 'r') as file:
+        data = json.load(file)
 
-with open('./data.json', 'w') as file:
-    json.dump(data, file)"""
+    data['player']['name'] = name
+
+    with open('./data.json', 'w') as file:
+        json.dump(data, file)
+
 
 # Initialize Pygame
 pygame.init()
 pygame.font.init()
 
 # Set up
+# give_name()
 screen_width = 400
 screen_height = 710
 rocket_intervals = [0.25, 1]
