@@ -15,6 +15,7 @@ screen_height = 710
 rocket_intervals = [0.25, 1]
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Runner Hell')
+pygame.display.set_icon(pygame.image.load('./img/running_girl.png'))
 
 # Define the Background
 BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_width, screen_height))
