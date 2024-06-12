@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.y = y
         self.health = HealthBar(135, 20, 150, 30, 3)
         self.score = 0
+        self.dead = False
 
     def load_images(self, directory, frames, direction):
         self.sprites = []
@@ -57,7 +58,11 @@ class Player(pygame.sprite.Sprite):
                 data['player']['highscore'] = int(self.score)
                 with open('./data.json', 'w') as file:
                     json.dump(data, file)
+            self.dead = True
             self.kill()
+
+    def vital_sign(self):
+        return self.dead
 
     def gravity(self):
         if self.facing:
