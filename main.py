@@ -82,6 +82,7 @@ while running:
         gets_hit = pygame.sprite.spritecollide(player, rocket_sprite, True)
         if gets_hit:
             rocket_sprite.remove(rocket)
+            player.reduce_health()
 
     # draws stuff to the screen
     draw_window()
