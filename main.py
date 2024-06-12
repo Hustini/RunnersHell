@@ -70,6 +70,17 @@ start_time = time.time()
 interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
 
+def end_screen():
+    screen.fill((0, 0, 0))
+    game_over_text = font.render('GAME OVER', True, (255, 0, 0))
+    screen.blit(game_over_text, (
+        screen_width // 2 - game_over_text.get_width() // 2, screen_height // 2 - game_over_text.get_height() // 2))
+    pygame.display.flip()
+    time.sleep(3)
+    pygame.quit()
+    sys.exit()
+
+
 def draw_window(score):
     screen.blit(BG, (0, 0))
     moving_sprites.draw(screen)
@@ -104,6 +115,10 @@ while running:
             rocket_sprite.remove(rocket)
             player.reduce_health()
 
+    # died
+    if player.vital_sign():
+        end_screen()
+
     # score
     player.increase_score(score_increment)
     score_text = font.render(f'{player.get_score()}', True, (255, 255, 255))
@@ -116,7 +131,7 @@ while running:
         rocket.move()
 
     current_time = time.time()
-    if current_time - start_time >= interval:
+    if current_time - start_time >= interval and not player.vital_sign():
         create_rocket()
         start_time = current_time
         interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
