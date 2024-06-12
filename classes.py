@@ -40,9 +40,9 @@ class Player(pygame.sprite.Sprite):
         self.facing = value
 
     def reduce_health(self):
+        self.health.reduce_hp()
         if self.health.hp == 0:
             self.kill()
-        self.health.reduce_hp()
 
     def gravity(self):
         if self.facing:
