@@ -13,6 +13,8 @@ pygame.init()
 screen_width = 400
 screen_height = 710
 rocket_intervals = [0.25, 1]
+FPS = 30
+clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Runner Hell')
 pygame.display.set_icon(pygame.image.load('./img/running_girl.png'))
@@ -90,4 +92,5 @@ while running:
 
 # Quit Pygame
 pygame.quit()
+clock.tick(FPS)
 sys.exit()
