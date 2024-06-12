@@ -1,5 +1,6 @@
 import os
 import pygame
+import json
 
 
 class Player(pygame.sprite.Sprite):
@@ -50,6 +51,12 @@ class Player(pygame.sprite.Sprite):
     def reduce_health(self):
         self.health.reduce_hp()
         if self.health.hp == 0:
+            with open('./data.json', 'r') as file:
+                data = json.load(file)
+            if self.score > data['player']['highscore']:
+                data['player']['highscore'] = int(self.score)
+                with open('./data.json', 'w') as file:
+                    json.dump(data, file)
             self.kill()
 
     def gravity(self):
