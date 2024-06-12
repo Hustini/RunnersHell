@@ -24,7 +24,7 @@ BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_
 
 # Define player and sprite group for animation
 moving_sprites = pygame.sprite.Group()
-player = Player(30, 550)
+player = Player(130, 550)
 moving_sprites.add(player)
 
 # sprite group for the pillar
@@ -72,6 +72,12 @@ while running:
                     player.load_images('./img/player', 6, False)
                     player.set_facing(False)
 
+    # collisions
+    for rocket in rocket_sprite:
+        gets_hit = pygame.sprite.spritecollide(player, rocket_sprite, True)
+        if gets_hit:
+            rocket_sprite.remove(rocket)
+
     # draws stuff to the screen
     draw_window()
     for pillar in pillars:
@@ -86,7 +92,7 @@ while running:
         interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
     # gravity
-    player.gravity()
+    # player.gravity()
     player.update(0.009)
     rocket_sprite.update(0.009)
 
