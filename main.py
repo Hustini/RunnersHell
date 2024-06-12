@@ -8,7 +8,7 @@ from classes import Pillar
 from classes import Rocket
 from classes import HealthBar
 
-# Json data
+""""# Json data
 name = str(input('Give me a name'))
 with open('./data.json', 'r') as file:
     data = json.load(file)
@@ -16,12 +16,13 @@ with open('./data.json', 'r') as file:
 data['player']['name'] = name
 
 with open('./data.json', 'w') as file:
-    json.dump(data, file)
+    json.dump(data, file)"""
 
 # Initialize Pygame
 pygame.init()
+pygame.font.init()
 
-# Set up the display
+# Set up
 screen_width = 400
 screen_height = 710
 rocket_intervals = [0.25, 1]
@@ -30,6 +31,10 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Runner Hell')
 pygame.display.set_icon(pygame.image.load('./img/running_girl.png'))
+
+# score
+score_increment = 0.1
+font = pygame.font.Font('./PressStart2P-Regular.ttf', 20)
 
 # Define the Background
 BG = pygame.transform.scale(pygame.image.load('./img/background.jpeg'), (screen_width, screen_height))
@@ -62,13 +67,14 @@ start_time = time.time()
 interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
 
-def draw_window():
+def draw_window(score):
     screen.blit(BG, (0, 0))
     moving_sprites.draw(screen)
     moving_sprites.update(0.009)
     pillar_sprite.draw(screen)
     rocket_sprite.draw(screen)
     player.health.draw(screen)
+    screen.blit(score, (180, 60))
     pygame.display.flip()
 
 
@@ -95,8 +101,12 @@ while running:
             rocket_sprite.remove(rocket)
             player.reduce_health()
 
+    # score
+    player.increase_score(score_increment)
+    score_text = font.render(f'{player.get_score()}', True, (255, 255, 255))
+
     # draws stuff to the screen
-    draw_window()
+    draw_window(score_text)
     for pillar in pillars:
         pillar.move()
     for rocket in rocket_sprite:
