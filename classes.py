@@ -56,10 +56,11 @@ class Player(pygame.sprite.Sprite):
 class Rocket(pygame.sprite.Sprite):
     def __init__(self, x, y, img='./img/rocket.png'):
         super().__init__()
-        self.x = x
-        self.y = y
         self.image = pygame.transform.scale_by(pygame.transform.rotate(pygame.image.load(img), 180), 0.1)
         self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+        self.x = x
+        self.y = y
 
     def move(self):
         self.y += 0.5
