@@ -12,6 +12,7 @@ pygame.init()
 # Set up the display
 screen_width = 400
 screen_height = 710
+rocket_intervals = [0.25, 1]
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Runner Hell')
 
@@ -40,7 +41,7 @@ def create_rocket():
 
 
 start_time = time.time()
-interval = random.uniform(1, 3)
+interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
 
 def draw_window():
@@ -79,7 +80,7 @@ while running:
     if current_time - start_time >= interval:
         create_rocket()
         start_time = current_time
-        interval = random.uniform(1, 3)
+        interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
     # gravity
     player.gravity()
