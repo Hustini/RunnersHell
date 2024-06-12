@@ -1,3 +1,4 @@
+import json
 import pygame
 import sys
 import random
@@ -6,6 +7,16 @@ from classes import Player
 from classes import Pillar
 from classes import Rocket
 from classes import HealthBar
+
+# Json data
+name = str(input('Give me a name'))
+with open('./data.json', 'r') as file:
+    data = json.load(file)
+
+data['player']['name'] = name
+
+with open('./data.json', 'w') as file:
+    json.dump(data, file)
 
 # Initialize Pygame
 pygame.init()
@@ -98,7 +109,7 @@ while running:
         interval = random.uniform(rocket_intervals[0], rocket_intervals[1])
 
     # gravity
-    # player.gravity()
+    player.gravity()
     player.update(0.009)
     rocket_sprite.update(0.009)
 
