@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
 
         self.x = x
         self.y = y
-        self.health = HealthBar(125, 10, 150, 30, 3)
+        self.health = HealthBar(135, 20, 150, 30, 3)
 
     def load_images(self, directory, frames, direction):
         self.sprites = []
@@ -88,6 +88,7 @@ class HealthBar:
         ratio = self.hp / self.max_hp
         pygame.draw.rect(surface, "red", (self.x, self.y, self.w, self.h))
         pygame.draw.rect(surface, "green", (self.x, self.y, self.w * ratio, self.h))
+        surface.blit(pygame.transform.scale_by(pygame.image.load('./img/heart.png'), 0.075), (100, 10))
 
     def reduce_hp(self):
         self.hp -= 1
