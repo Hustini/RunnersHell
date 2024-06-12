@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
 
         self.x = x
         self.y = y
+        self.health = HealthBar(125, 10, 150, 30, 3)
 
     def load_images(self, directory, frames, direction):
         self.sprites = []
@@ -37,6 +38,11 @@ class Player(pygame.sprite.Sprite):
 
     def set_facing(self, value):
         self.facing = value
+
+    def reduce_health(self):
+        if self.health.hp == 0:
+            self.kill()
+        self.health.reduce_hp()
 
     def gravity(self):
         if self.facing:
@@ -67,6 +73,24 @@ class Rocket(pygame.sprite.Sprite):
         self.rect.y += 0.5
         if self.rect.y > 710:
             self.kill()
+
+
+class HealthBar:
+    def __init__(self, x, y, w, h, max_hp):
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.hp = max_hp
+        self.max_hp = max_hp
+
+    def draw(self, surface):
+        ratio = self.hp / self.max_hp
+        pygame.draw.rect(surface, "red", (self.x, self.y, self.w, self.h))
+        pygame.draw.rect(surface, "green", (self.x, self.y, self.w * ratio, self.h))
+
+    def reduce_hp(self):
+        self.hp -= 1
 
 
 class Pillar(pygame.sprite.Sprite):
