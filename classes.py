@@ -65,7 +65,7 @@ class Rocket(pygame.sprite.Sprite):
     def move(self):
         self.y += 0.5
         self.rect.y += 0.5
-        if self.rect.y > 400:
+        if self.rect.y > 710:
             self.kill()
 
 
