@@ -25,7 +25,7 @@ pygame.init()
 pygame.font.init()
 
 # Set up
-# give_name()
+give_name()
 screen_width = 400
 screen_height = 710
 rocket_intervals = [0.25, 1]
@@ -74,26 +74,26 @@ def end_screen():
     screen.fill((0, 0, 0))
     game_over_text = font.render('GAME OVER', True, (255, 0, 0))
     score_text = font.render(f'Score: {player.get_score()}', True, (255, 0, 0))
-    screen.blit(game_over_text, (
+    screen.blit(game_over_text, (  # draw game over text on screen
         screen_width // 2 - game_over_text.get_width() // 2,
         screen_height // 2 - game_over_text.get_height() // 2 - 20))
-    screen.blit(score_text, (
+    screen.blit(score_text, (  # draw score text on screen
         screen_width // 2 - score_text.get_width() // 2, screen_height // 2 - score_text.get_height() // 2 + 20))
-    pygame.display.flip()
+    pygame.display.flip()  # update screen
     time.sleep(3)
     pygame.quit()
     sys.exit()
 
 
 def draw_window(score):
-    screen.blit(BG, (0, 0))
-    moving_sprites.draw(screen)
-    moving_sprites.update(0.009)
-    pillar_sprite.draw(screen)
-    rocket_sprite.draw(screen)
-    player.health.draw(screen)
-    screen.blit(score, (180, 60))
-    pygame.display.flip()
+    screen.blit(BG, (0, 0))  # draw background
+    moving_sprites.draw(screen)  # draw player
+    moving_sprites.update(0.009)  # update
+    pillar_sprite.draw(screen)  # draw pillars
+    rocket_sprite.draw(screen)  # draw rockets
+    player.health.draw(screen)  # draw health bar
+    screen.blit(score, (180, 60))  # draw score
+    pygame.display.flip()  # update screen
 
 
 # Main game loop
@@ -135,6 +135,7 @@ while running:
         rocket.move()
 
     current_time = time.time()
+    # makes sure enough time has passed and the player is alive
     if current_time - start_time >= interval and not player.vital_sign():
         create_rocket()
         start_time = current_time
