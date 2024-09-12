@@ -31,10 +31,10 @@ class Player(pygame.sprite.Sprite):
             self.sprites.append(pygame.transform.scale_by(pygame.transform.rotate(pygame.transform.flip(image, True, direction), 270), 0.5))
 
     def update(self, speed):
-        self.current_sprite += speed
-        if self.current_sprite >= len(self.sprites):
+        self.current_sprite += speed  # update current sprite
+        if self.current_sprite >= len(self.sprites):  # reset current sprite
             self.current_sprite = 0
-        self.image = self.sprites[int(self.current_sprite)]
+        self.image = self.sprites[int(self.current_sprite)]  # use current sprite as index
 
     def get_facing(self):
         return self.facing
@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
         return int(self.score)
 
     def reduce_health(self):
-        self.health.reduce_hp()
+        self.health.reduce_hp()  # reduce_hp is from the healthbar class
         if self.health.hp == 0:
             with open('./data.json', 'r') as file:
                 data = json.load(file)
